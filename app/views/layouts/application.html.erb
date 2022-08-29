@@ -6,12 +6,13 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-
+    
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+
   </head>
 
-  <body class='min-h-full bg-white dark:bg-gradient-to-br dark:from-[#191919] dark:to-[#000000]'>
+  <body class='min-h-full bg-white'>
     <%= render "shared/navbar" %>
     <%= yield %>
   </body>

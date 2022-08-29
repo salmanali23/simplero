@@ -1,3 +1,31 @@
-<div class="w-3/4 place-content-center mx-auto">
-  
+<%= turbo_frame_tag 'group_modal' %>
+<div>
+  <p>
+    <h2>Groups</h2>
+  </p>
+  <div>
+    <div class="flex justify-between p-4">
+        <div>
+            <ul class="hidden text-sm font-medium text-center text-gray-500 rounded-lg divide-x divide-gray-200 shadow sm:flex dark:divide-gray-700 dark:text-gray-400">
+                <li class="max-w-max">
+                    <a href="#" class="max-w-max inline-block p-4 text-gray-900 bg-gray-100 rounded-l-lg focus:ring-4 focus:ring-blue-300 active focus:outline-none dark:bg-gray-700 dark:text-white" aria-current="page">All groups</a>
+                </li>
+                <li class="max-w-max">
+                    <a href="#" class="max-w-max inline-block p-4  bg-white hover:text-gray-700 hover:bg-gray-50 focus:ring-4 focus:ring-blue-300 focus:outline-none dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700">Created by me</a>
+                </li>
+                <li class="max-w-max">
+                    <a href="#" class="max-w-max inline-block p-4 bg-white hover:text-gray-700 hover:bg-gray-50 focus:ring-4 focus:ring-blue-300 focus:outline-none dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700">Where i am member</a>
+                </li>
+            </ul>
+        </div>
+        <div class="flex justify-between items-baseline " data-controller="extended-modal" data-extended-modal-prevent-default-action-opening="false">
+            <%= render 'modal' %>
+            <%= link_to 'New Group', new_group_path, class: "self-center", data: { action: "click->extended-modal#open", 'turbo-frame': 'group_modal' } %>
+        </div>
+    </div>
+  <%= turbo_frame_tag "groups", class: "flex flex-col items-baseline space-y-6 p-4 shadow-lg rounded" do %>
+    <% @groups.each do |group| %>
+      <%= render "group", group: group %>
+    <% end %>
+    <%end %>
 </div>

@@ -4,7 +4,8 @@ module.exports = {
   content: [
     './app/helpers/**/*.rb',
     './app/javascript/**/*.js',
-    './app/views/**/*'
+    './app/views/**/*',
+    './vendor/javascript/tailwindcss-stimulus-components.js'
   ],
   theme: {
     extend: {
