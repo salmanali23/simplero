@@ -1,0 +1,31 @@
+<nav class="relative flex flex-wrap items-center justify-between px-2 py-3 bg-red-500 mb-3">
+  <div class="container px-4 mx-auto flex flex-wrap items-center justify-between">
+    <div class="w-full relative flex justify-between lg:w-auto  px-4 lg:static lg:block lg:justify-start">
+      <a class="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-white" href="#pablo">
+        Simplero
+      </a>
+      <button class="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none" type="button">
+        <span class="block relative w-6 h-px rounded-sm bg-white"></span>
+        <span class="block relative w-6 h-px rounded-sm bg-white mt-1"></span>
+        <span class="block relative w-6 h-px rounded-sm bg-white mt-1"></span>
+      </button>
+    </div>
+    <div class="lg:flex flex-grow items-center" id="example-navbar-warning">
+      <ul class="flex flex-col lg:flex-row list-none ml-auto">
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" href="<%= groups_path %>">
+              Groups
+            </a>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete }, class: 'px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75' %>
+          </li>
+        <% else %>
+          <%= link_to "Sign up", new_user_registration_path, class: "px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" %> |
+          <%= link_to "Login", new_user_session_path, class: "px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>
