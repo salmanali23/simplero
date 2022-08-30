@@ -2,11 +2,18 @@ class GroupsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @groups = Group.all
+    @groups = Group.includes(:users, :posts)
   end
 
   def new
     @group = Group.new
+  end
+
+  def show
+    @group = Group.find(params[:id])
+    @posts = @group.posts
+    @users = @group.users
+    @post = Post.new
   end
 
   def create

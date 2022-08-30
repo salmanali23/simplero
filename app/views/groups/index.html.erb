@@ -1,7 +1,7 @@
 <%= turbo_frame_tag 'group_modal' %>
 <div>
   <p>
-    <h2>Groups</h2>
+    <h3 class="font-medium leading-tight text-3xl mt-0 mb-2 text-blue-600">Groups</h3>
   </p>
   <div>
     <div class="flex justify-between p-4">
@@ -18,7 +18,7 @@
                 </li>
             </ul>
         </div>
-        <div class="flex justify-between items-baseline " data-controller="extended-modal" data-extended-modal-prevent-default-action-opening="false">
+        <div class="flex justify-between items-baseline" data-controller="extended-modal" data-extended-modal-prevent-default-action-opening="false">
             <%= render 'modal' %>
             <%= link_to 'New Group', new_group_path, class: "self-center", data: { action: "click->extended-modal#open", 'turbo-frame': 'group_modal' } %>
         </div>
@@ -27,5 +27,5 @@
     <% @groups.each do |group| %>
       <%= render "group", group: group %>
     <% end %>
-    <%end %>
+  <%end %>
 </div>

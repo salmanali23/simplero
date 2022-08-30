@@ -1,0 +1,7 @@
+<h3 class="font-medium leading-tight text-3xl mt-0 mb-2 text-blue-600">All Posts</h3>
+
+<%= turbo_frame_tag "posts", class: "flex flex-col items-baseline space-y-6 p-4 shadow-lg rounded" do %>
+  <% @posts.each do |post| %>
+    <%= render "posts/post", post: post %>
+  <% end %>
+<%end %>
