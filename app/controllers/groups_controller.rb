@@ -2,7 +2,15 @@ class GroupsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @groups = Group.includes(:users, :posts)
+    @groups = case params[:search]
+              when 'owned'
+                current_user.owned_groups
+              when 'member'
+                current_user.groups
+              else
+                Group.all
+              end
+    @groups = @groups.includes(:users, :posts)
   end
 
   def new
@@ -35,6 +43,17 @@ class GroupsController < ApplicationController
         }
     ), status: :unprocessable_entity
     end
+  end
+
+  def join
+    @group = Group.find(params[:group_id])
+    @group.users << current_user
+  end
+
+  def remove
+    @group = Group.find(params[:group_id])
+    user_group = @group.user_groups.find_by(user_id: params[:user_id])
+    user_group&.destroy
   end
 
   private

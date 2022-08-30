@@ -1,12 +1,15 @@
-<div aria-label="card 2" tabindex="0" class="focus:outline-none lg:w-4/12 lg:mr-7 lg:mb-0 mb-7 bg-white dark:bg-gray-800  p-6 shadow rounded">
-  <div class="flex items-center border-gray-200 dark:border-gray-700  pb-6">
-      <div class="w-12 h-12 bg-gray-300 dark:bg-gray-900  rounded-full flex flex-shrink-0"></div>
-      <div class="flex items-start justify-between w-full">
-          <div class="pl-3 w-full">
-              <p tabindex="0" class="focus:outline-none text-xl font-medium leading-5 text-gray-800 dark:text-white "><%= link_to group.name, group_path(group)%></p>
-              <span tabindex="0" class="focus:outline-none text-sm leading-normal pt-2 text-gray-500 dark:text-gray-200 "><%= group.users.size %> Users</span> |
-              <span tabindex="0" class="focus:outline-none text-sm leading-normal pt-2 text-gray-500 dark:text-gray-200 "><%= group.posts.size %> Posts</span>
-          </div>
+<div class="text-gray-700 w-3/6 pb-4 pl-4">
+  <div class="flex <%= owner?(group) ? '' : 'justify-between' %>">
+    <%= link_to group.name, group_path(group), class: "ftext-2xl font-normal leading-normal mt-0 mb-2 text-pink-800"%>
+    <% if owner?(group) %>
+        <span class="pl-2 text-gray-500">Created by me</span>
+    <% elsif !group_member?(group) %>
+      <div data-controller='reset-form'>
+        <%= link_to 'Join', group_member_path(group), data: { turbo_method: "post", remote: 'true', action: "ajax:success->reset-form#hide" }, class: "ftext-2xl font-normal leading-none mt-0 mb-2 py-1 px-4 text-black border border-black-700 rounded"%>
       </div>
+    <% end %>
+  </div>
+  <div>
+    <%= group.users.size %> members <%= group.posts.length %> posts
   </div>
 </div>

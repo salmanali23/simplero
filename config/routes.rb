@@ -3,6 +3,10 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :groups do
-    resources :posts
+    post '/join', as: :member, to: 'groups#join'
+    delete '/remove', to: 'groups#remove'
+    resources :posts do
+      resources :comments, shallow: true
+    end
   end
 end

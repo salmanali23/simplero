@@ -1,0 +1,12 @@
+<%= turbo_frame_tag "posts" do %>
+<%= turbo_frame_tag "comments" do %>
+  <%= render "post",  post: @post %>
+  <div class='pt-6'>
+    Comments
+    <% @comments.each do |comment| %>
+        <%= render "comments/comment", comment: comment %>
+    <% end %>
+  </div>
+ <% end %>
+<%= render "comments/form" %>
+<% end %>

@@ -36,4 +36,8 @@ class GroupPolicy < ApplicationPolicy
   def update?
     record.user == user
   end
+
+  def owner?
+    update?
+  end
 end

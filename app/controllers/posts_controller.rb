@@ -1,10 +1,16 @@
 class PostsController < ApplicationController
   before_action :set_post, except: [ :index, :create ]
-  before_action :set_group, only: [ :destroy ]
+  before_action :set_group, only: [ :destroy, :show, :create ]
 
+
+  def show 
+    @post = Post.includes(:comments).find(params[:id])
+    @comments = @post.comments
+    @comment = Comment.new
+  end
 
   def create
-    @post = Post.new(post_params.merge(user: current_user))
+    @post = @group.posts.new(post_params.merge(user: current_user))
     if @post.save
       render turbo_stream: turbo_stream.append(
         'posts',
@@ -31,7 +37,7 @@ class PostsController < ApplicationController
 
 
   def post_params
-    params.require(:post).permit(:title, :content, :group_id)
+    params.require(:post).permit(:title, :content)
   end
 
   def set_post
