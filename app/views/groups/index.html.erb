@@ -18,10 +18,12 @@
                 </li>
             </ul>
         </div>
-        <div class="flex justify-between items-baseline" data-controller="extended-modal" data-extended-modal-prevent-default-action-opening="false">
-            <%= render 'modal' %>
-            <%= link_to 'New Group', new_group_path, class: "self-center", data: { action: "click->extended-modal#open", 'turbo-frame': 'group_modal' } %>
-        </div>
+        <% if policy(Group).new? %>
+          <div class="flex justify-between items-baseline" data-controller="extended-modal" data-extended-modal-prevent-default-action-opening="false">
+              <%= render 'modal' %>
+              <%= link_to 'New Group', new_group_path, class: "self-center", data: { action: "click->extended-modal#open", 'turbo-frame': 'group_modal' } %>
+          </div>
+        <% end %>
     </div>
   <%= turbo_frame_tag "groups", class: "flex flex-col items-baseline space-y-6 p-4 shadow-lg rounded" do %>
     <% @groups.each do |group| %>
