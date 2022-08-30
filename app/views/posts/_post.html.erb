@@ -1,8 +1,14 @@
-<div class="border-b border-gray-200">
+<div class="w-400 border-b border-gray-200">
   <div class="text-gray-700 w-full pb-2">
     <%= link_to post.title, group_post_path(@group.id, post.id), class: "ftext-2xl font-normal leading-normal mt-0 mb-2 text-pink-800"%>
   </div>
   <p class="text-lg font-light leading-relaxed mt-6 mb-4 text-slate-800">
     <%= post.content %>
   </p>
+  <% if policy(Post).edit? %>
+    <span class="text-lg font-bold dark:text-white"> <%= link_to 'Edit', edit_group_post_path(@group, post)%></span> | 
+    <span class="text-lg font-bold dark:text-white"> <%= link_to "Delete", group_post_path(@group, post), data: { "turbo-method": :delete } %></span>
+  <% end %>
+  |<span class="text-lg font-bold dark:text-white">Created by <%= creator_name(post)%></span>
 </div>
+

@@ -1,4 +1,4 @@
-class GroupPolicy < ApplicationPolicy
+class PostPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope.where(user_id: user.id)
@@ -34,6 +34,6 @@ class GroupPolicy < ApplicationPolicy
   end
 
   def update?
-    record.user == user || record.group.user == user
+    true
   end
 end

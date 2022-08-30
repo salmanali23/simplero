@@ -13,7 +13,7 @@ class ApplicationPolicy
   end
 
   def show?
-    false
+    true
   end
 
   def create?
@@ -36,6 +36,10 @@ class ApplicationPolicy
     false
   end
 
+  def scope
+    Pundit.policy_scope!(user, record.class)
+  end
+
   class Scope
     def initialize(user, scope)
       @user = user
@@ -43,7 +47,7 @@ class ApplicationPolicy
     end
 
     def resolve
-      scope.none
+      scope
     end
 
     private
