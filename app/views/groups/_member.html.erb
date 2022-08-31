@@ -1,6 +1,10 @@
 <div class="pb-2">
-    <%= user.name %> 
-    <%= link_to group_remove_path(@group, user_id: user.id), remote: true, data: { turbo_method: "delete", action: "ajax:success->reset-form#hide" } do %>
-      <i class="fa-solid fa-xmark"></i>
+   <%= turbo_frame_tag 'remove_member' do %>
+        <%= user.name %> 
+        <% if policy(@group).remove? %>
+            <%= link_to group_remove_path(@group, user_id: user.id), data: { turbo_method: "delete" } do %>
+            <i class="fa-solid fa-xmark"></i>
+            <% end %>
+        <% end %>
     <% end %>
 </div>

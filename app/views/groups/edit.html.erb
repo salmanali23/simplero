@@ -1,0 +1,7 @@
+<%= turbo_frame_tag "group_modal" do %>
+  <turbo-stream target="group_form" action="replace">
+  <template>
+      <%= render partial: "form", locals: { group: @group } %>
+  </template>
+  </turbo-stream>
+<% end %>

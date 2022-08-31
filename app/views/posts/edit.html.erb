@@ -1,0 +1,5 @@
+<%= turbo_frame_tag "posts" do %>
+  <%= turbo_frame_tag "comments" do %>
+    <%= render 'form' %>
+  <% end %>
+<% end %>

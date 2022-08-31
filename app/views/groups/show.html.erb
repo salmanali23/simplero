@@ -1,13 +1,15 @@
 <%= turbo_frame_tag "groups" do %>
- <%= turbo_frame_tag "posts", class: "flex flex-col items-baseline space-y-6 p-4 shadow-lg rounded" do %>
+ <%= turbo_frame_tag "posts",  class: "flex flex-col items-baseline space-y-6 p-4 shadow-lg rounded" do %>
+   <%= turbo_frame_tag "comments" do %>
  <div class='flex flex-row justify-between w-full'>
     <div class="w-4/6 pl-4">
         My Group
-        <div class="max-h-screen w-full">
-        <%= render "posts/form"%>
-        </div>
+        <% if policy(@group).create? %>
+          <div class="max-h-screen w-full">
+            <%= render "posts/form"%>
+          </div>
+        <% end %>
         <h3 class="font-medium leading-tight text-3xl mt-0 mb-2 text-blue-600">All Posts</h3>
-
         <% @posts.each do |post| %>
           <div class='pb-2 W-4/6'>
             <div class='h-[120px]'>
@@ -24,5 +26,6 @@
       <% end %>
     </div>
   </div>
-  <%end %>
+  <%end%>
+ <% end %>
 <% end %>

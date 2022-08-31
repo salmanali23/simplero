@@ -1,5 +1,6 @@
 class GroupsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_group, only: [:edit, :show, :update]
 
   def index
     @groups = case params[:search]
@@ -18,10 +19,16 @@ class GroupsController < ApplicationController
   end
 
   def show
-    @group = Group.find(params[:id])
     @posts = @group.posts
     @users = @group.users
     @post = Post.new
+  end
+
+  def edit; end
+
+  def update
+    @group.update(group_params)
+    redirect_to group_path(@group), status: :see_other
   end
 
   def create
@@ -48,17 +55,24 @@ class GroupsController < ApplicationController
   def join
     @group = Group.find(params[:group_id])
     @group.users << current_user
+    render turbo_stream: turbo_stream.replace('join_member', '')
   end
 
   def remove
     @group = Group.find(params[:group_id])
+    authorize @group
     user_group = @group.user_groups.find_by(user_id: params[:user_id])
     user_group&.destroy
+    render turbo_stream: turbo_stream.replace('remove_member', '')
   end
 
   private
 
   def group_params
     params.require(:group).permit(:name)
+  end
+
+  def set_group
+    @group = Group.find(params[:id])
   end
 end

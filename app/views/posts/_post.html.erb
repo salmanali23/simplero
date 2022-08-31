@@ -6,9 +6,9 @@
     <div> 
       <%= post.content %>
     </div>
-     <% if policy(Post).edit? %>
+     <% if policy(post).edit? %>
       <span class="text-lg font-bold"> <%= link_to 'Edit', edit_group_post_path(@group, post)%></span> | 
-      <span class="text-lg font-bold "> <%= link_to "Delete", group_post_path(@group, post), data: { "turbo-method": :delete } %></span>
+      <span class="text-lg font-bold "> <%= link_to "Delete", group_post_path(@group, post), data: { "turbo_method": :delete } %></span>
     <% end %> |<span class="text-lg font-bold">Created by <%= creator_name(post)%></span>
   </div>
 </div>

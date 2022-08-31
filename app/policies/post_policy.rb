@@ -34,6 +34,6 @@ class PostPolicy < ApplicationPolicy
   end
 
   def update?
-    true
+    user == record.user || user == record.group.user
   end
 end

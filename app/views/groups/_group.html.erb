@@ -4,9 +4,9 @@
     <% if owner?(group) %>
         <span class="pl-2 text-gray-500">Created by me</span>
     <% elsif !group_member?(group) %>
-      <div data-controller='reset-form'>
-        <%= link_to 'Join', group_member_path(group), data: { turbo_method: "post", remote: 'true', action: "ajax:success->reset-form#hide" }, class: "ftext-2xl font-normal leading-none mt-0 mb-2 py-1 px-4 text-black border border-black-700 rounded"%>
-      </div>
+        <%= turbo_frame_tag 'join_member' do %>
+          <%= link_to 'Join', group_member_path(group), data: { "turbo_method": "post" }, class: "ftext-2xl font-normal leading-none mt-0 mb-2 py-1 px-4 text-black border border-black-700 rounded"%>
+        <% end %>
     <% end %>
   </div>
   <div>

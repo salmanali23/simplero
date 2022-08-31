@@ -18,7 +18,7 @@ class GroupPolicy < ApplicationPolicy
   end
 
   def create?
-    new?
+    record.users.include?(user) || record.user == user
   end
 
   def edit?
@@ -33,11 +33,15 @@ class GroupPolicy < ApplicationPolicy
     update?
   end
 
-  def update?
-    record.user == user
-  end
-
   def owner?
     update?
+  end
+
+  def remove?
+    update?
+  end
+
+  def update?
+    record.user == user
   end
 end

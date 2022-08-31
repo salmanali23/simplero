@@ -1,11 +1,11 @@
 class CommentsController < ApplicationController
-    before_action :find_group, :find_post
+    before_action :set_group, :set_post
   
     def create
       @comment = @post.comments.new(comment_params.merge(user: current_user))
       if @comment.save
         render turbo_stream: turbo_stream.append(
-          'comments',
+          'post_comments',
           partial: 'comment',
           locals: {
             comment: @comment
@@ -28,11 +28,11 @@ class CommentsController < ApplicationController
       params.require(:comment).permit(:content)
     end
 
-    def find_post
+    def set_post
       @post = Post.find(params[:post_id])
     end
 
-    def find_group
+    def set_group
       @group = Group.find(params[:group_id])
     end 
 end

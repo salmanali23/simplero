@@ -1,9 +1,9 @@
 class PostsController < ApplicationController
   before_action :set_post, except: [ :index, :create ]
-  before_action :set_group, only: [ :destroy, :show, :create ]
+  before_action :set_group
 
 
-  def show 
+  def show
     @post = Post.includes(:comments).find(params[:id])
     @comments = @post.comments
     @comment = Comment.new
@@ -11,6 +11,7 @@ class PostsController < ApplicationController
 
   def create
     @post = @group.posts.new(post_params.merge(user: current_user))
+    authorize @group
     if @post.save
       render turbo_stream: turbo_stream.append(
         'posts',
@@ -30,9 +31,16 @@ class PostsController < ApplicationController
     end
   end
 
+  def update
+    authorize @post
+    @post.update(post_params)
+    redirect_to group_post_path(@group, @post),  notice: "Post was successfully updated."
+  end 
+
   def destroy
+    authorize @post
     @post.destroy
-    redirect_to group_posts_path(@group), notice: "Post was successfully destroyed."
+    redirect_to group_path(@group), status: :see_other, notice: "Post was successfully destroyed."
   end
 
 
