@@ -1,5 +1,5 @@
 <div class="pb-2">
-   <%= turbo_frame_tag 'remove_member' do %>
+   <%= turbo_frame_tag "remove_member_#{user.id}" do %>
         <%= user.name %> 
         <% if policy(@group).remove? %>
             <%= link_to group_remove_path(@group, user_id: user.id), data: { turbo_method: "delete" } do %>

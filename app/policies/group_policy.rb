@@ -44,4 +44,8 @@ class GroupPolicy < ApplicationPolicy
   def update?
     record.user == user
   end
+
+  def group_member?
+    user.groups.include? record
+  end
 end

@@ -4,9 +4,10 @@ class PostsController < ApplicationController
 
 
   def show
-    @post = Post.includes(:comments).find(params[:id])
+    @post = Post.includes(comments: :replies).find(params[:id])
     @comments = @post.comments
     @comment = Comment.new
+    @reply = Reply.new
   end
 
   def create

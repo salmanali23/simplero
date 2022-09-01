@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-    before_action :set_group, :set_post
+    before_action :set_group, :set_post, :set_reply
   
     def create
       @comment = @post.comments.new(comment_params.merge(user: current_user))
@@ -35,5 +35,9 @@ class CommentsController < ApplicationController
     def set_group
       @group = Group.find(params[:group_id])
     end 
+
+    def set_reply
+      @reply = Reply.new
+    end
 end
   

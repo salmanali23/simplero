@@ -7,4 +7,12 @@
        <%= "#{comment.user.name} commented" %>
      </p>
   </div>
+   <%= turbo_frame_tag "replies" do %>
+     <div class='pl-3'>
+       <%= turbo_frame_tag "comment_replies_#{comment.id}" do %>
+          <%= render(ReplyComponent.with_collection(comment.replies, current_user: current_user)) %>
+       <% end %>
+        <%= render 'replies/form', comment: comment %>
+      </div>
+   <% end %>
 </div>

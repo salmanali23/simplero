@@ -55,7 +55,7 @@ class GroupsController < ApplicationController
   def join
     @group = Group.find(params[:group_id])
     @group.users << current_user
-    render turbo_stream: turbo_stream.replace('join_member', '')
+    render turbo_stream: turbo_stream.replace("join_member_#{@group.id}", '')
   end
 
   def remove
@@ -63,7 +63,7 @@ class GroupsController < ApplicationController
     authorize @group
     user_group = @group.user_groups.find_by(user_id: params[:user_id])
     user_group&.destroy
-    render turbo_stream: turbo_stream.replace('remove_member', '')
+    render turbo_stream: turbo_stream.replace("remove_member_#{params[:user_id]}", '')
   end
 
   private

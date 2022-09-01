@@ -6,7 +6,9 @@ Rails.application.routes.draw do
     post '/join', as: :member, to: 'groups#join'
     delete '/remove', to: 'groups#remove'
     resources :posts do
-      resources :comments, shallow: true
+      resources :comments, shallow: true do 
+        resources :replies
+      end
     end
   end
 end
