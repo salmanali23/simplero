@@ -1,24 +1,53 @@
-# README
+# Poject Name
+Simplero
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Description
 
-Things you may want to cover:
+The following are the points that are supported
+- A user can signup and login.
+- A user can create group
+- Users can join groups.
+- Group creater can remove group members.
+- Group members can add posts. 
+- Post creater can edit/delete post.
+- A user can add comment on post.
 
-* Ruby version
+# System Architecture
+  It's deployed on heroku 
+  https://simplero.herokuapp.com/
 
-* System dependencies
+  You can use these accounts to access
+  1. email: calvin@simplero.com
+     password: simplero
+  2. email: owais@simplero.com
+     password: simplero
 
-* Configuration
+# Stack
 
-* Database creation
+* [Ruby](https://www.ruby-lang.org/en/)
+* [Ruby on Rails](https://rubyonrails.org/)
+* [PostgreSQL](https://www.postgresql.org/)
+* [FontAwesome](https://fontawesome.com/)
+* [Stimulus](https://stimulus.hotwired.dev/)
+* [TailwindCss](https://tailwindcss.com/)
 
-* Database initialization
+------------
 
-* How to run the test suite
+## Getting Started
 
-* Services (job queues, cache servers, search engines, etc.)
+To get a local copy up and running follow these simple steps.
 
-* Deployment instructions
+### Prerequisites
 
-* ...
+* `ruby 2.7.2`
+* `rails 7.0.1`
+
+### Installation
+
+1. Extract the repo
+2. Install the gems
+`bundle install`
+3. Build tailwind 
+`rake tailwindcss:build`
+4. Start the server
+`rails s`
