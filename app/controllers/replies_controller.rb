@@ -6,7 +6,7 @@ class RepliesController < ApplicationController
       if @reply.save
         render turbo_stream: turbo_stream.append(
           "comment_replies_#{@comment.id}",
-          html: ReplyComponent.new(reply: @reply, current_user: current_user).render_in(ActionController::Base.new.view_context)
+          ReplyComponent.new(reply: @reply, current_user: current_user).render_in(view_context)
         )
       else
         render turbo_stream: turbo_stream.replace(

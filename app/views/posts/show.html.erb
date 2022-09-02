@@ -4,9 +4,7 @@
   <%= turbo_frame_tag "post_comments" do %>
     <div class='pt-6'>
         Comments
-        <% @comments.each do |comment| %>
-            <%= render "comments/comment", comment: comment %>
-        <% end %>
+        <%= render(CommentComponent.with_collection(@comments, current_user: current_user)) %>
     </div>
   <% end %>
   <h2>Add New Comment</h2>

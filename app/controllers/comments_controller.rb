@@ -6,10 +6,7 @@ class CommentsController < ApplicationController
       if @comment.save
         render turbo_stream: turbo_stream.append(
           'post_comments',
-          partial: 'comment',
-          locals: {
-            comment: @comment
-          }
+          CommentComponent.new(comment: @comment, current_user: current_user).render_in(view_context)
         )
       else
         render turbo_stream: turbo_stream.replace(
