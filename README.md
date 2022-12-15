@@ -12,14 +12,6 @@ The following are the points that are supported
 - Post creater can edit/delete post.
 - A user can add comment on post.
 
-# System Architecture
-
-  You can use these accounts to access
-  1. email: calvin@simplero.com
-     password: simplero
-  2. email: owais@simplero.com
-     password: simplero
-
 # Stack
 
 * [Ruby](https://www.ruby-lang.org/en/)
