@@ -13,8 +13,6 @@ The following are the points that are supported
 - A user can add comment on post.
 
 # System Architecture
-  It's deployed on heroku 
-  https://simplero.herokuapp.com/
 
   You can use these accounts to access
   1. email: calvin@simplero.com
